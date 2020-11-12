@@ -31,27 +31,36 @@
         android:layout_marginBottom="4dp"
         android:text="Connect To Server" />
 
+    <TextView
+        android:id="@+id/mousePad"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnleftclick"
+        android:layout_alignTop="@+id/btnleftclick"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="380dp"
+        android:background="@android:color/holo_blue_dark"
+        android:clickable="true" />
+
     <Button
         android:id="@+id/btnleftclick"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="205dp"
         android:layout_marginEnd="209dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="4dp"
         android:text="LEFT" />
 
     <Button
         android:id="@+id/btnrightclick"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="209dp"
-        android:layout_marginTop="205dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginBottom="4dp"
         android:text="RIGHT" />
 </RelativeLayout>
