@@ -1,4 +1,5 @@
 import socket                
+import pyautogui
 
 s = socket.socket()          
 print("Socket successfully created")
@@ -17,6 +18,11 @@ while True:
    c, addr = s.accept()      
    uh = c.recv(100)
    print('Got connection from', addr)
-   print(uh)
+   print(uh.decode())
+   if uh.decode()=="left":
+   	pyautogui.click()
+   else:
+   	pyautogui.rightClick()	
+   	
    #print(username)
    

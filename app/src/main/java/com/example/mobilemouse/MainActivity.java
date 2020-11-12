@@ -30,24 +30,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         etIP = findViewById(R.id.etIP);
         etPort = findViewById(R.id.etPort);
-        tvMessages = findViewById(R.id.tvMessages);
-        etMessage = findViewById(R.id.etMessage);
-        btnSend = findViewById(R.id.btnSend);
+        Button btnleftclick = findViewById(R.id.btnleftclick);
+        Button btnrightclick = findViewById(R.id.btnrightclick);
         Button btnConnect = findViewById(R.id.btnConnect);
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvMessages.setText("");
                 SERVER_IP = etIP.getText().toString().trim();
                 SERVER_PORT = Integer.parseInt(etPort.getText().toString().trim());
                 Thread1 = new Thread(new Thread1());
                 Thread1.start();
             }
         });
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        btnleftclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = etMessage.getText().toString().trim();
+                String message = "left";
+                if (!message.isEmpty()) {
+                    new Thread(new Thread3(message)).start();
+                    new Thread(new Thread1()).start();
+                }
+            }
+        });
+        btnrightclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "right";
                 if (!message.isEmpty()) {
                     new Thread(new Thread3(message)).start();
                     new Thread(new Thread1()).start();
@@ -66,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvMessages.setText("Not Connected\n");
-                    }
-                });
             }
         }
     }
@@ -83,16 +85,8 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         public void run() {
-
                 output.write(message);
                 output.flush();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvMessages.append("client: " + message + "\n");
-                        etMessage.setText("");
-                    }
-                });
         }
     }
 }
