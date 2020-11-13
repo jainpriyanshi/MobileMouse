@@ -26,10 +26,12 @@ while True:
    else:
        i = uh.decode()
        ls = i.split(",")
-       x = int(ls[0])
-       y = int(ls[1])
+       x = float(ls[0])
+       y = float(ls[1])
+       current_x, current_y = pyautogui.position()
 
-       pyautogui.moveTo(x, y)
+
+       pyautogui.moveTo(int(x+current_x), int(y+current_y))
 
        #print(username)
 
