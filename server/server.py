@@ -4,7 +4,7 @@ import pyautogui
 s = socket.socket()          
 print("Socket successfully created")
   
-port = 8000                                                                                                                                   
+port=9000                                                                                                                                  
 HEADER_LENGTH = 10 
 hostname = socket.gethostname() 
 print(socket.gethostbyname(hostname))
@@ -21,8 +21,11 @@ while True:
    print(uh.decode())
    if uh.decode()=="left":
    	pyautogui.click()
-   else:
-   	pyautogui.rightClick()	
+   elif uh.decode()=="right":
+       pyautogui.rightClick()
+
+
+       #print(username)
    	
    #print(username)
    
