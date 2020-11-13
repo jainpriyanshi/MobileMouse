@@ -54,14 +54,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        new Thread(new Thread1()).start();
+                        disX = event.getX(); //Mouse movement in x direction
+                        disY = event.getY();
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        disX = event.getX()- initX; //Mouse movement in x direction
-                        disY = event.getY()- initY; //Mouse movement in y direction
+                        //disX = event.getX()- initX; //Mouse movement in x direction
+                        //disY = event.getY()- initY; //Mouse movement in y direction
                             /*set init to new position so that continuous mouse movement
                             is captured*/
-                        initX = event.getX();
+                        /*initX = event.getX();
                         initY = event.getY();
                         if(disX !=0|| disY !=0){
                             String message = Integer.toString((int) disX) +',' +  Integer.toString((int) disY);
@@ -70,25 +71,21 @@ public class MainActivity extends AppCompatActivity {
                                 new Thread(new Thread1()).start();
                             }
                         }//consider a tap only if usr did not move mouse after ACTION_DOWN
-                        if(!mouseMoved){
-                            //out.println(Constants.MOUSE_LEFT_CLICK);
-                        }
-                        mouseMoved=true;
+                        */
                         break;
+
                     case MotionEvent.ACTION_UP:
-                        new Thread(new Thread1()).start();
+                        initX = event.getX();
+                        initY = event.getY();
+                        if(initX-disX !=0|| initY-disY !=0){
+                            String message = Integer.toString((int) (initX-disX)) +',' +  Integer.toString((int) (initY-disY));
+                            if (!message.isEmpty()) {
+                                new Thread(new Thread3(message)).start();
+                                new Thread(new Thread1()).start();
+                            }
+                        }
                 }
                 return false;
-            }
-        });
-        btnleftclick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = "left";
-                if (!message.isEmpty()) {
-                    new Thread(new Thread3(message)).start();
-                    new Thread(new Thread1()).start();
-                }
             }
         });
         btnleftclick.setOnClickListener(new View.OnClickListener() {
